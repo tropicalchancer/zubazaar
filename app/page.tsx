@@ -19,19 +19,19 @@ export default async function Home() {
   const currentYear = new Date().getFullYear()
 
   const asciiLogo = `
-  ╔═══╗╔╗ ╔╗╔══╗╔═══╗╔═══╗╔═══╗╔═══╗╔═══╗
-  ╚╗╔╗║║║ ║║║╔╗║║╔═╗║║╔═╗║║╔═╗║║╔═╗║║╔═╗║
-   ║║║║║║ ║║║╚╝║║╚═╝║║║ ║║║║ ║║║║ ║║║╚═╝║
-   ║║║║║║ ║║║╔╗║║╔══╝║╚═╝║║╚═╝║║╚═╝║║╔╗╔╝
-  ╔╝╚╝║║╚═╝║║║║║║║   ║╔═╗║║╔═╗║║╔═╗║║║║║
-  ╚═══╝╚═══╝╚╝╚╝╚╝   ╚╝ ╚╝╚╝ ╚╝╚╝ ╚╝╚╝╚╝
+███████╗██╗   ██╗██████╗  █████╗ ███████╗ █████╗  █████╗ ██████╗ 
+╚══███╔╝██║   ██║██╔══██╗██╔══██╗╚══███╔╝██╔══██╗██╔══██╗██╔══██╗
+  ███╔╝ ██║   ██║██████╔╝███████║  ███╔╝ ███████║███████║██████╔╝
+ ███╔╝  ██║   ██║██╔══██╗██╔══██║ ███╔╝  ██╔══██║██╔══██║██╔══██╗
+███████╗╚██████╔╝██████╔╝██║  ██║███████╗██║  ██║██║  ██║██║  ██║
+╚══════╝ ╚═════╝ ╚═════╝ ╚═╝  ╚═╝╚══════╝╚═╝  ╚═╝╚═╝  ╚═╝╚═╝  ╚═╝
   `
 
   return (
     <main className="min-h-screen bg-background text-foreground pb-16">
       <div className="container mx-auto px-4">
         {/* ASCII Art Header */}
-        <pre className="ascii-art text-center pt-8 pb-4 hidden md:block">
+        <pre className="ascii-art text-center pt-8 pb-4 hidden md:block text-base">
           {asciiLogo}
         </pre>
         
