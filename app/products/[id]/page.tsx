@@ -1,9 +1,13 @@
+"use client"
+
+import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
 import { ChevronUp, ArrowLeft, ExternalLink } from "lucide-react"
 import { CommentSection } from "@/components/comment-section"
 import { format } from "date-fns"
+import { getCommentsForProduct } from "@/lib/comments"
 
 // This would normally come from a database - reduced to just 2 products
 const products = [
@@ -33,6 +37,14 @@ const products = [
 
 export default function ProductPage({ params }: { params: { id: string } }) {
   const product = products.find((p) => p.id === params.id)
+  const [commentCount, setCommentCount] = useState(0)
+
+  useEffect(() => {
+    if (product) {
+      const comments = getCommentsForProduct(product.id)
+      setCommentCount(comments.length)
+    }
+  }, [product])
 
   if (!product) {
     return (

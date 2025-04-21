@@ -2,60 +2,31 @@
 
 import type React from "react"
 
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { Button } from "@/components/ui/button"
 import { Textarea } from "@/components/ui/textarea"
 import { formatDistanceToNow } from "date-fns"
-
-interface Comment {
-  id: string
-  author: string
-  content: string
-  timestamp: Date
-}
-
-// Mock data - in a real app this would come from a database
-// Reduced to match our 2 products
-const initialComments: Record<string, Comment[]> = {
-  "1": [
-    {
-      id: "c1",
-      author: "Sarah Johnson",
-      content: "This is such a clever idea! I've been looking for something like this for ages.",
-      timestamp: new Date(2025, 3, 19, 14, 30),
-    },
-    {
-      id: "c2",
-      author: "Michael Chen",
-      content: "I've been using this for a week now and it's completely changed my workflow. Highly recommend!",
-      timestamp: new Date(2025, 3, 19, 16, 45),
-    },
-  ],
-  "2": [
-    {
-      id: "c3",
-      author: "Alex Rivera",
-      content: "The build quality is exceptional. Worth every penny!",
-      timestamp: new Date(2025, 3, 18, 9, 15),
-    },
-  ],
-}
+import { getCommentsForProduct, addCommentToProduct, type Comment } from "@/lib/comments"
 
 export function CommentSection({ productId }: { productId: string }) {
-  const [comments, setComments] = useState<Comment[]>(initialComments[productId] || [])
+  const [comments, setComments] = useState<Comment[]>([])
   const [newComment, setNewComment] = useState("")
+
+  // Load comments when component mounts or productId changes
+  useEffect(() => {
+    setComments(getCommentsForProduct(productId))
+  }, [productId])
 
   const handleSubmitComment = (e: React.FormEvent) => {
     e.preventDefault()
 
     if (!newComment.trim()) return
 
-    const comment: Comment = {
-      id: `c${Date.now()}`,
+    const comment = addCommentToProduct(productId, {
       author: "Anonymous User", // Since we're not implementing auth
       content: newComment,
       timestamp: new Date(),
-    }
+    })
 
     setComments([...comments, comment])
     setNewComment("")
