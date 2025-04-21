@@ -23,9 +23,8 @@ export default async function Home() {
           <h1 className="text-2xl font-bold text-gray-800">{currentMonth}</h1>
           <span className="text-gray-500">{new Date().getFullYear()}</span>
         </div>
+        <SimpleSubmitForm />
       </div>
-
-      <SimpleSubmitForm />
 
       <div className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-3">
         {items.map((item) => (
