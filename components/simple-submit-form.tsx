@@ -5,6 +5,7 @@ import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Textarea } from '@/components/ui/textarea'
 import { submitItem } from '@/app/actions/submitItem'
+import { Terminal, X, Upload, Loader2 } from 'lucide-react'
 
 export default function SimpleSubmitForm() {
   const [isOpen, setIsOpen] = useState(false)
@@ -22,7 +23,6 @@ export default function SimpleSubmitForm() {
       setIsOpen(false)
     } catch (error) {
       console.error('Failed to submit:', error)
-      // Optionally show error to user
     } finally {
       setIsSubmitting(false)
     }
@@ -31,76 +31,98 @@ export default function SimpleSubmitForm() {
   if (!isOpen) {
     return (
       <Button 
-        className="bg-orange-500 hover:bg-orange-600" 
+        className="bg-[#25ff61] hover:bg-[#25ff61]/90 text-black font-mono"
         onClick={() => setIsOpen(true)}
       >
-        Submit Product
+        <Terminal className="mr-2 h-4 w-4" />
+        SUBMIT_PROJECT.exe
       </Button>
     )
   }
 
   return (
-    <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-50">
-      <div className="bg-white w-full max-w-2xl mx-4 rounded-2xl overflow-hidden shadow-2xl transform transition-all">
-        <div className="px-8 py-6 bg-gradient-to-r from-orange-500/10 to-purple-500/10">
-          <h2 className="text-2xl font-bold bg-gradient-to-r from-orange-500 to-purple-500 bg-clip-text text-transparent">
-            Share Something Amazing
-          </h2>
-          <p className="text-gray-600 mt-2">Let's discover your next favorite product together.</p>
+    <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50">
+      <div className="terminal-window w-full max-w-2xl mx-4">
+        <div className="terminal-header">
+          <div className="terminal-button"></div>
+          <div className="terminal-button"></div>
+          <div className="terminal-button"></div>
+          <div className="flex-1 text-black text-xs font-mono">new_project.exe</div>
+          <Button
+            variant="ghost"
+            size="icon"
+            className="h-4 w-4 hover:text-black"
+            onClick={() => setIsOpen(false)}
+          >
+            <X className="h-3 w-3" />
+          </Button>
         </div>
         
-        <form ref={formRef} onSubmit={handleSubmit} className="p-8 space-y-6">
+        <form ref={formRef} onSubmit={handleSubmit} className="p-8 space-y-6 scanlines">
           <div className="space-y-2">
-            <label htmlFor="name" className="text-sm font-medium text-gray-700">Product Name</label>
+            <label htmlFor="name" className="text-sm font-mono text-[#25ff61]">PROJECT_NAME</label>
             <Input
               id="name"
               name="name"
-              placeholder="What's it called?"
+              placeholder="Enter project name..."
               required
               disabled={isSubmitting}
-              className="text-lg py-6 px-4 rounded-xl border-2 border-gray-200 focus:border-orange-500 transition-colors"
+              className="font-mono bg-black/50 border-[#25ff61] text-[#25ff61] placeholder:text-[#25ff61]/30
+                focus-visible:ring-[#25ff61] focus-visible:ring-offset-0"
             />
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="description" className="text-sm font-medium text-gray-700">Description</label>
+            <label htmlFor="description" className="text-sm font-mono text-[#25ff61]">PROJECT_DESCRIPTION</label>
             <Textarea
               id="description"
               name="description"
-              placeholder="Tell us what makes this product special..."
+              placeholder="Describe your project..."
               disabled={isSubmitting}
-              className="min-h-[120px] text-lg rounded-xl border-2 border-gray-200 focus:border-orange-500 transition-colors"
+              className="font-mono bg-black/50 border-[#25ff61] text-[#25ff61] placeholder:text-[#25ff61]/30
+                focus-visible:ring-[#25ff61] focus-visible:ring-offset-0 min-h-[120px]"
             />
           </div>
           
           <div className="space-y-2">
-            <label htmlFor="url" className="text-sm font-medium text-gray-700">Product URL</label>
+            <label htmlFor="url" className="text-sm font-mono text-[#25ff61]">PROJECT_URL</label>
             <Input
               id="url"
               name="url"
               type="url"
               placeholder="https://..."
               disabled={isSubmitting}
-              className="text-lg py-6 px-4 rounded-xl border-2 border-gray-200 focus:border-orange-500 transition-colors"
+              className="font-mono bg-black/50 border-[#25ff61] text-[#25ff61] placeholder:text-[#25ff61]/30
+                focus-visible:ring-[#25ff61] focus-visible:ring-offset-0"
             />
           </div>
 
           <div className="flex justify-end gap-3 pt-4">
             <Button
               type="button"
-              variant="outline"
+              variant="ghost"
               onClick={() => setIsOpen(false)}
               disabled={isSubmitting}
-              className="px-6 py-5 rounded-xl text-base hover:bg-gray-100"
+              className="font-mono text-[#25ff61] hover:text-[#25ff61]/80 hover:bg-[#25ff61]/10"
             >
-              Cancel
+              CANCEL
             </Button>
             <Button
               type="submit"
               disabled={isSubmitting}
-              className="px-8 py-5 rounded-xl text-base bg-gradient-to-r from-orange-500 to-purple-500 hover:from-orange-600 hover:to-purple-600 text-white font-medium"
+              className="font-mono bg-[#25ff61] text-black hover:bg-[#25ff61]/90 flex items-center gap-2"
             >
-              {isSubmitting ? 'Submitting...' : 'Share Product'}
+              {isSubmitting ? (
+                <>
+                  <Loader2 className="h-4 w-4 animate-spin" />
+                  UPLOADING...
+                </>
+              ) : (
+                <>
+                  <Upload className="h-4 w-4" />
+                  SUBMIT_PROJECT
+                </>
+              )}
             </Button>
           </div>
         </form>
