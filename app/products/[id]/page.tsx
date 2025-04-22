@@ -4,7 +4,7 @@ import { useState, useEffect } from "react"
 import Link from "next/link"
 import { Badge } from "@/components/ui/badge"
 import { Button } from "@/components/ui/button"
-import { ChevronUp, ArrowLeft, ExternalLink } from "lucide-react"
+import { ChevronUp, ArrowLeft, ExternalLink, Hash } from "lucide-react"
 import { CommentSection } from "@/components/comment-section"
 import { format } from "date-fns"
 import { getCommentsForProduct } from "@/lib/comments"
@@ -21,6 +21,8 @@ const products = [
     upvotes: 266,
     maker: true,
     submittedAt: new Date(2025, 3, 5), // April 5, 2025
+    track: "Content",
+    tags: ["newsletter", "curation", "products"]
   },
   {
     id: "2",
@@ -32,6 +34,8 @@ const products = [
     upvotes: 105,
     maker: true,
     submittedAt: new Date(2025, 3, 8), // April 8, 2025
+    track: "Hardware",
+    tags: ["keyboard", "gaming", "mechanical"]
   },
 ]
 
@@ -84,13 +88,33 @@ export default function ProductPage({ params }: { params: { id: string } }) {
                 {product.maker && (
                   <Badge className="ml-2 bg-gray-200 text-gray-700 hover:bg-gray-300 rounded-full">M</Badge>
                 )}
+                {product.track && (
+                  <Badge variant="secondary" className="ml-2">
+                    {product.track}
+                  </Badge>
+                )}
               </h1>
               <p className="text-gray-500 mb-1">{product.description}</p>
               {formattedDate && <p className="text-sm text-gray-400 mb-4">Submitted on {formattedDate}</p>}
 
               <div className="mb-6">
                 <h2 className="text-lg font-medium mb-2">About this product</h2>
-                <p className="text-gray-700">{product.longDescription}</p>
+                <p className="text-gray-700 mb-4">{product.longDescription}</p>
+                
+                {product.tags && product.tags.length > 0 && (
+                  <div className="flex flex-wrap gap-2">
+                    {product.tags.map((tag, index) => (
+                      <Badge 
+                        key={index}
+                        variant="outline"
+                        className="text-gray-600"
+                      >
+                        <Hash className="w-3 h-3 mr-1" />
+                        {tag}
+                      </Badge>
+                    ))}
+                  </div>
+                )}
               </div>
 
               <a

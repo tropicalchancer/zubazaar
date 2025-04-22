@@ -3,7 +3,8 @@
 import { useState } from 'react'
 import { Card } from '@/components/ui/card'
 import { Button } from '@/components/ui/button'
-import { ArrowBigUp, Terminal } from 'lucide-react'
+import { Badge } from '@/components/ui/badge'
+import { ArrowBigUp, Terminal, Hash } from 'lucide-react'
 import Link from 'next/link'
 
 interface ProductCardProps {
@@ -12,9 +13,19 @@ interface ProductCardProps {
   description: string
   url: string
   upvotes: number
+  track?: string | null
+  tags?: string[] | null
 }
 
-export default function ProductCard({ id, name, description, url, upvotes: initialUpvotes }: ProductCardProps) {
+export default function ProductCard({ 
+  id, 
+  name, 
+  description, 
+  url, 
+  upvotes: initialUpvotes,
+  track,
+  tags 
+}: ProductCardProps) {
   const [upvotes, setUpvotes] = useState(initialUpvotes)
   const [isVoting, setIsVoting] = useState(false)
   const [isHovered, setIsHovered] = useState(false)
@@ -81,10 +92,31 @@ export default function ProductCard({ id, name, description, url, upvotes: initi
               >
                 {name}
               </Link>
+              {track && (
+                <Badge variant="secondary" className="ml-2 bg-[#25ff61]/10 text-[#25ff61] border-[#25ff61]/20">
+                  {track}
+                </Badge>
+              )}
             </div>
             
             <div className="group relative">
-              <p className="text-[#25ff61]/80 text-sm leading-relaxed">{description}</p>
+              <p className="text-[#25ff61]/80 text-sm leading-relaxed mb-2">{description}</p>
+              
+              {tags && tags.length > 0 && (
+                <div className="flex flex-wrap gap-2 mb-2">
+                  {tags.map((tag, index) => (
+                    <Badge 
+                      key={index}
+                      variant="outline" 
+                      className="text-[#25ff61]/60 border-[#25ff61]/20"
+                    >
+                      <Hash className="w-3 h-3 mr-1" />
+                      {tag}
+                    </Badge>
+                  ))}
+                </div>
+              )}
+              
               <Link 
                 href={url} 
                 target="_blank"

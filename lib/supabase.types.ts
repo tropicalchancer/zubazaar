@@ -10,6 +10,8 @@ export type Database = {
           upvotes: number
           maker: boolean
           submitted_at: string
+          track: string | null
+          tags: string[] | null
         }
         Insert: {
           id?: string
@@ -19,6 +21,8 @@ export type Database = {
           upvotes?: number
           maker?: boolean
           submitted_at?: string
+          track?: string | null
+          tags?: string[] | null
         }
         Update: {
           id?: string
@@ -28,6 +32,8 @@ export type Database = {
           upvotes?: number
           maker?: boolean
           submitted_at?: string
+          track?: string | null
+          tags?: string[] | null
         }
       }
       votes: {

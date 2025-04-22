@@ -63,6 +63,8 @@ export default async function Home() {
               description={item.description || ''}
               url={item.url || ''}
               upvotes={item.upvotes}
+              track={item.track}
+              tags={item.tags}
             />
           ))}
         </div>
