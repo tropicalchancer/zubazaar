@@ -1,17 +1,20 @@
-# Product Hunt Clone
+# ZuBazaar  
+**Products, projects, and fork‑able experiments from the Zuzalu world**
 
-A simplified clone of Product Hunt with core features including project submissions, upvoting, and commenting functionality. This project is built with Next.js, React, and Tailwind CSS.
+## Why ZuBazaar?
+Pop‑up experiments vanish in TG scrollback and past popup villages. ZuBazaar captures them so every ZuPass holder can **discover, up‑vote, and build on** the best ideas.
 
-![Product Hunt Clone Screenshot](https://hebbkx1anhila5yf.public.blob.vercel-storage.com/Screenshot%202025-04-21%20at%208.31.37%E2%80%AFAM-9RpMaEwGu96O11gY2BcpcEUgb7S5jB.png)
+## Who it’s for
+- 🛠 Builders shipping in zuzalu
+- 🧪 Experimenters testing wild ideas  
+- 🌍 Nomads & organizers seeking proven playbooks  
 
-## Features
+_View‑only for the world. Create & vote if you hold a ZuPass._
 
-- Browse products with upvote counts and comments
-- Submit new products with name, description, and URL
-- Upvote products
-- Comment on products
-- View product details
-- Monthly organization of products
+## Core actions
+1. **Browse** a single feed (filter by tags).  
+2. **Submit** Title · URL · 140‑char pitch · Tags.  
+3. **Up‑vote** once per item (enforced via ZuPass holder hash).
 
 ## Prerequisites
 

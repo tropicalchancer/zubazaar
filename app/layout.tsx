@@ -9,10 +9,9 @@ import { ZupassProvider } from "@/components/auth/ZupassProvider"
 const inter = Inter({ subsets: ["latin"] })
 
 export const metadata: Metadata = {
-  title: "Product Hunt Clone",
+  title: "zubazaar",
   description:
-    "A simple clone of Product Hunt with core features including project submissions, upvoting, and commenting",
-    generator: 'v0.dev'
+    "Products, projects, and forkable experiments from the Zuzalu world"
 }
 
 export default function RootLayout({
