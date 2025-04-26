@@ -112,7 +112,7 @@ export default function SimpleSubmitForm() {
           </div>
           <DialogFooter>
             <Button type="submit" className="bg-[#25ff61] text-black hover:bg-[#25ff61]/90">
-              Submit Project
+              add project
             </Button>
           </DialogFooter>
         </form>
