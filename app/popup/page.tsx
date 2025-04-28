@@ -1,3 +1,5 @@
+"use client";
+
 import { useZupassPopupSetup } from "@pcd/passport-interface";
 
 /**
