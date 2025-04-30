@@ -36,7 +36,7 @@ export default async function Home() {
         </pre>
         
         <p className="text-center text-[#25ff61]/80 font-mono text-sm mb-12">
-          a place for tech pioneers with an interdisciplinary soul to share products, projects and experiments.
+          a place for techno optimists with an interdisciplinary soul to share products, projects and experiments.
         </p>
         
         <div className="flex flex-col items-center mb-12">
